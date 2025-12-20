@@ -1,4 +1,4 @@
-# SQL Real-World Projects 🚀  
+# SQL Real-World Projects 
 A comprehensive collection of **real-world, production-style SQL projects** designed to showcase **expert-level SQL skills** across **Data Engineering, Data Science, AI systems, Backend/Web Development, and Business Analytics**.
 
 This repository is built to demonstrate how SQL is actually used in **modern data-driven organizations**, covering everything from raw data ingestion to analytics, reporting, and application-level queries.
