@@ -6,5 +6,5 @@
 -- ==================================================
 
 -- Select Table From Database
-select * from Analysis_sql
-where customer_id=164;
+SELECT * FROM Analysis_sql
+WHERE customer_id=164;
