@@ -14,3 +14,11 @@ SELECT product_name, SUM(total_amount) AS Total_Revenue
 FROM Analysis_sql
 GROUP BY product_name
 ORDER BY Total_Revenue DESC;
+
+-- Day 3: Top 5 customers by spending
+
+SELECT customer_name, SUM(total_amount) AS Top_Customer
+FROM Analysis_sql
+GROUP BY customer_name
+ORDER BY Top_Customer DESC
+LIMIT 5;
