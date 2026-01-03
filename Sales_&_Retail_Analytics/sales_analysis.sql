@@ -22,3 +22,9 @@ FROM Analysis_sql
 GROUP BY customer_name
 ORDER BY Top_Customer DESC
 LIMIT 5;
+
+-- Day 4: Total quantity sold per category
+
+SELECT category, SUM(quantity) AS total_quantity
+FROM Analysis_sql
+GROUP BY category;
