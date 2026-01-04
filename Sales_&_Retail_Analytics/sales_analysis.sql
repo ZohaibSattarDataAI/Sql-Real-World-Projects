@@ -28,3 +28,11 @@ LIMIT 5;
 SELECT category, SUM(quantity) AS total_quantity
 FROM Analysis_sql
 GROUP BY category;
+
+-- Day 5: Daily revenue trend
+SELECT substr(sale_date,1,10) AS Date_Wise,
+SUM(total_amount) AS Trend
+FROM Analysis_sql
+GROUP BY Date_Wise
+ORDER BY Trend DESC;
+
