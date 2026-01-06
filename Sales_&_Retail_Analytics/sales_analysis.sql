@@ -36,3 +36,8 @@ FROM Analysis_sql
 GROUP BY Date_Wise
 ORDER BY Trend DESC;
 
+-- Day 6: Average order amount per customer
+SELECT customer_id, customer_name , AVG(total_amount) as avg_order
+FROM Analysis_sql
+GROUP BY customer_id , customer_name
+ORDER BY avg_order DESC;
