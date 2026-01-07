@@ -41,3 +41,9 @@ SELECT customer_id, customer_name , AVG(total_amount) as avg_order
 FROM Analysis_sql
 GROUP BY customer_id , customer_name
 ORDER BY avg_order DESC;
+
+-- Day 7: Products sold more than 2 units
+SELECT product_name, SUM(quantity) AS units_sold
+FROM Analysis_sql
+GROUP BY product_name
+HAVING SUM(quantity) > 2;
