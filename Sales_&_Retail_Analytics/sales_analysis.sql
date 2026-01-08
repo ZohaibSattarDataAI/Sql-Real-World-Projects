@@ -47,3 +47,9 @@ SELECT product_name, SUM(quantity) AS units_sold
 FROM Analysis_sql
 GROUP BY product_name
 HAVING SUM(quantity) > 2;
+
+-- Day 8: Customers with more than 1 purchase
+SELECT customer_id, COUNT(*) AS purchase_count
+FROM Analysis_sql
+GROUP BY customer_id
+HAVING COUNT(*) > 1;
