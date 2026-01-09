@@ -60,3 +60,8 @@ SELECT product_name, SUM(total_amount) AS revenue,
        RANK() OVER(ORDER BY SUM(total_amount)DESC) AS rank_product
 FROM Analysis_sql
 GROUP BY product_name;
+
+-- Day 10: Window function - cumulative revenue
+SELECT substr(sale_date,1,10) as Sales_Date, SUM(total_amount) 
+      OVER (ORDER BY sale_date) AS cumulative_revenue
+FROM Analysis_sql;
