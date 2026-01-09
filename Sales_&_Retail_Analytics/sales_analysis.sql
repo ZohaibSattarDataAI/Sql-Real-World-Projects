@@ -53,3 +53,10 @@ SELECT customer_id, COUNT(*) AS purchase_count
 FROM Analysis_sql
 GROUP BY customer_id
 HAVING COUNT(*) > 1;
+
+-- Day 9: Ranking products by revenue
+
+SELECT product_name, SUM(total_amount) AS revenue,
+       RANK() OVER(ORDER BY SUM(total_amount)DESC) AS rank_product
+FROM Analysis_sql
+GROUP BY product_name;
