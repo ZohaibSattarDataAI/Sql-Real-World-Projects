@@ -65,3 +65,9 @@ GROUP BY product_name;
 SELECT substr(sale_date,1,10) as Sales_Date, SUM(total_amount) 
       OVER (ORDER BY sale_date) AS cumulative_revenue
 FROM Analysis_sql;
+
+-- Day 11: Join example with products table (if exists)
+-- Assuming another table: products(product_id, product_name, category, price)
+-- SELECT s.sale_id, s.sale_date, p.product_name, s.quantity, s.total_amount
+-- FROM sales s
+-- INNER JOIN products p ON s.product_id = p.product_id;
