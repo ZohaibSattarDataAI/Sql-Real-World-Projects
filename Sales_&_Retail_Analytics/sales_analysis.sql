@@ -77,3 +77,11 @@ FROM Analysis_sql;
 SELECT customer_id,total_amount
 FROM Analysis_sql
 WHERE total_amount >(SELECT AVG(total_amount)FROM Analysis_sql);
+
+-- Day 13: Group by + having + order
+
+SELECT category,SUM(total_amount) AS revenue
+FROM Analysis_sql
+GROUP BY category
+HAVING SUM(total_amount)>200
+ORDER BY revenue DESC;
