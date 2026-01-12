@@ -71,3 +71,9 @@ FROM Analysis_sql;
 -- SELECT s.sale_id, s.sale_date, p.product_name, s.quantity, s.total_amount
 -- FROM sales s
 -- INNER JOIN products p ON s.product_id = p.product_id;
+
+-- Day 12: Subquery example
+
+SELECT customer_id,total_amount
+FROM Analysis_sql
+WHERE total_amount >(SELECT AVG(total_amount)FROM Analysis_sql);
