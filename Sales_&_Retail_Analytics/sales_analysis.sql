@@ -85,3 +85,8 @@ FROM Analysis_sql
 GROUP BY category
 HAVING SUM(total_amount)>200
 ORDER BY revenue DESC;
+
+-- Day 14: Distinct customers
+
+SELECT DISTINCT(customer_name),
+FROM Analysis_sql;
