@@ -90,3 +90,8 @@ ORDER BY revenue DESC;
 
 SELECT DISTINCT(customer_name),
 FROM Analysis_sql;
+
+-- Day 15: Count products per customer
+SELECT customer_id, COUNT(DISTINCT product_id) AS products_bought
+FROM Analysis_sql
+GROUP BY customer_id;
