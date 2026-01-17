@@ -95,3 +95,12 @@ FROM Analysis_sql;
 SELECT customer_id, COUNT(DISTINCT product_id) AS products_bought
 FROM Analysis_sql
 GROUP BY customer_id;
+
+-- Day 16: String function example
+SELECT customer_name, UPPER(customer_name) AS name_upper
+FROM Analysis_sql;
+
+-- Day 17: Date function example
+SELECT sale_date, EXTRACT(DAY FROM sale_date) AS day, SUM(total_amount) AS revenue
+FROM Analysis_sql
+GROUP BY sale_date;
