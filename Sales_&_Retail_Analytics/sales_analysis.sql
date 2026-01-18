@@ -104,3 +104,12 @@ FROM Analysis_sql;
 SELECT sale_date, EXTRACT(DAY FROM sale_date) AS day, SUM(total_amount) AS revenue
 FROM Analysis_sql
 GROUP BY sale_date;
+
+-- Day 18: CTE example
+WITH revenue_per_product AS (
+    SELECT product_name, SUM(total_amount) AS revenue
+    FROM Analysis_sql
+    GROUP BY product_name
+)
+SELECT * FROM revenue_per_product
+WHERE revenue > 500;
