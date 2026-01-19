@@ -113,3 +113,9 @@ WITH revenue_per_product AS (
 )
 SELECT * FROM revenue_per_product
 WHERE revenue > 500;
+
+-- Day 19: Ranking customers by revenue
+SELECT customer_id, SUM(total_amount) AS revenue,
+       DENSE_RANK() OVER (ORDER BY SUM(total_amount) DESC) AS rank
+FROM sales
+GROUP BY customer_id;
