@@ -119,3 +119,9 @@ SELECT customer_id, SUM(total_amount) AS revenue,
        DENSE_RANK() OVER (ORDER BY SUM(total_amount) DESC) AS rank
 FROM sales
 GROUP BY customer_id;
+
+-- Day 20: Monthly revenue trend (if dataset covers multiple months)
+-- SELECT DATE_TRUNC('month', sale_date) AS month, SUM(total_amount) AS monthly_revenue
+-- FROM sales
+-- GROUP BY month
+-- ORDER BY month;
