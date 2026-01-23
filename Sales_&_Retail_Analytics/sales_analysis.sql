@@ -125,3 +125,18 @@ GROUP BY customer_id;
 -- FROM sales
 -- GROUP BY month
 -- ORDER BY month;
+
+-- Day 21: Moving average (3-day)
+-- SELECT sale_date, AVG(total_amount) OVER (ORDER BY sale_date ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) AS moving_avg
+-- FROM sales;
+
+-- Day 22: Top product per day
+SELECT sale_date, product_name, SUM(quantity) AS units_sold,
+       RANK() OVER (PARTITION BY sale_date ORDER BY SUM(quantity) DESC) AS daily_rank
+FROM sales
+GROUP BY sale_date, product_name;
+
+-- Day 23: Subquery with IN
+SELECT customer_name, total_amount
+FROM sales
+WHERE product_id IN (SELECT product_id FROM sales WHERE category='Electronics');
