@@ -140,3 +140,8 @@ GROUP BY sale_date, product_name;
 SELECT customer_name, total_amount
 FROM sales
 WHERE product_id IN (SELECT product_id FROM sales WHERE category='Electronics');
+
+-- Day 24: Subquery with EXISTS
+SELECT customer_name
+FROM sales s
+WHERE EXISTS (SELECT 1 FROM sales WHERE customer_id=s.customer_id AND total_amount>500);
