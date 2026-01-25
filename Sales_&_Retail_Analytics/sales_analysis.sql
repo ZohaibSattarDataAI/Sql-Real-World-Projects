@@ -145,3 +145,8 @@ WHERE product_id IN (SELECT product_id FROM sales WHERE category='Electronics');
 SELECT customer_name
 FROM sales s
 WHERE EXISTS (SELECT 1 FROM sales WHERE customer_id=s.customer_id AND total_amount>500);
+
+-- Day 25: Average revenue per category
+SELECT category, AVG(total_amount) AS avg_revenue
+FROM sales
+GROUP BY category;
