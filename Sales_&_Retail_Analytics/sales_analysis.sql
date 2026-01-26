@@ -117,7 +117,7 @@ WHERE revenue > 500;
 -- Day 19: Ranking customers by revenue
 SELECT customer_id, SUM(total_amount) AS revenue,
        DENSE_RANK() OVER (ORDER BY SUM(total_amount) DESC) AS rank
-FROM sales
+FROM Analysis_sql
 GROUP BY customer_id;
 
 -- Day 20: Monthly revenue trend (if dataset covers multiple months)
@@ -133,20 +133,25 @@ GROUP BY customer_id;
 -- Day 22: Top product per day
 SELECT sale_date, product_name, SUM(quantity) AS units_sold,
        RANK() OVER (PARTITION BY sale_date ORDER BY SUM(quantity) DESC) AS daily_rank
-FROM sales
+FROM Analysis_sql
 GROUP BY sale_date, product_name;
 
 -- Day 23: Subquery with IN
 SELECT customer_name, total_amount
-FROM sales
+FROM Analysis_sql
 WHERE product_id IN (SELECT product_id FROM sales WHERE category='Electronics');
 
 -- Day 24: Subquery with EXISTS
 SELECT customer_name
-FROM sales s
+FROM Analysis_sql
 WHERE EXISTS (SELECT 1 FROM sales WHERE customer_id=s.customer_id AND total_amount>500);
 
 -- Day 25: Average revenue per category
 SELECT category, AVG(total_amount) AS avg_revenue
-FROM sales
+FROM Analysis_sql
 GROUP BY category;
+
+
+-- Day 26: Cumulative quantity sold
+SELECT product_name, SUM(quantity) OVER (ORDER BY sale_date) AS cumulative_quantity
+FROM Analysis_sql;
