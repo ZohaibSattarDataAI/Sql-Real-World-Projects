@@ -163,3 +163,8 @@ FROM  Analysis_sql;
 GROUP BY product_name
 ORDER BY total_quantity DESC
 LIMIT 3;
+
+-- Day 28: Total revenue by customer and category
+SELECT customer_name, category, SUM(total_amount) AS revenue
+FROM  Analysis_sql;
+GROUP BY customer_name, category;
