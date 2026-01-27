@@ -155,3 +155,11 @@ GROUP BY category;
 -- Day 26: Cumulative quantity sold
 SELECT product_name, SUM(quantity) OVER (ORDER BY sale_date) AS cumulative_quantity
 FROM Analysis_sql;
+
+
+-- Day 27: Top 3 products overall
+SELECT product_name, SUM(quantity) AS total_quantity
+FROM  Analysis_sql;
+GROUP BY product_name
+ORDER BY total_quantity DESC
+LIMIT 3;
