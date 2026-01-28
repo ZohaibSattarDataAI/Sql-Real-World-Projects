@@ -166,5 +166,12 @@ LIMIT 3;
 
 -- Day 28: Total revenue by customer and category
 SELECT customer_name, category, SUM(total_amount) AS revenue
-FROM  Analysis_sql;
+FROM  Analysis_sql
 GROUP BY customer_name, category;
+
+
+-- Day 29: Customers with purchases in multiple categories
+SELECT customer_id, COUNT(DISTINCT category) AS category_count
+FROM Analysis_sql;
+GROUP BY customer_id
+HAVING COUNT(DISTINCT category) > 1;
