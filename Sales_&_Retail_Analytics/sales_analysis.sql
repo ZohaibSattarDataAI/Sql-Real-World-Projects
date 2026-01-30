@@ -175,3 +175,9 @@ SELECT customer_id, COUNT(DISTINCT category) AS category_count
 FROM Analysis_sql;
 GROUP BY customer_id
 HAVING COUNT(DISTINCT category) > 1;
+
+-- Day 30: Final analytics summary
+SELECT product_name, SUM(quantity) AS total_units, SUM(total_amount) AS total_revenue
+FROM sales
+GROUP BY product_name
+ORDER BY total_revenue DESC;
