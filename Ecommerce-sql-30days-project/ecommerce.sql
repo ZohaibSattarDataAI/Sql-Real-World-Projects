@@ -1,4 +1,4 @@
-#1:Total users signed up in last 30 days
+# 1:Total users signed up in last 30 days
 
 SELECT COUNT(*) AS new_users_30d
 FROM users
