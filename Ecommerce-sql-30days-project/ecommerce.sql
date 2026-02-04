@@ -37,3 +37,6 @@ GROUP BY u.user_id
 ORDER BY orders_count DESC
 LIMIT 10;
 
+# Explanation:
+# Shows most active buyers.
+# Helps identify loyal customers or VIPs
