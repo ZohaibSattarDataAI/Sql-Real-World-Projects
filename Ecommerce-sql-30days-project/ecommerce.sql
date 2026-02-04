@@ -29,3 +29,11 @@ HAVING COUNT(order_id) = 1;
 # Useful for measuring repeat purchase potential.
 
 #4. Top 10 active users by order count
+
+SELECT u.user_id, u.first_name, u.last_name, COUNT(o.order_id) AS orders_count
+FROM users u
+JOIN orders o ON u.user_id = o.user_id
+GROUP BY u.user_id
+ORDER BY orders_count DESC
+LIMIT 10;
+
