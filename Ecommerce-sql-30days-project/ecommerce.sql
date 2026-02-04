@@ -27,3 +27,5 @@ HAVING COUNT(order_id) = 1;
 # Explanation:
 # Finds users who purchased only once.
 # Useful for measuring repeat purchase potential.
+
+#4. Top 10 active users by order count
