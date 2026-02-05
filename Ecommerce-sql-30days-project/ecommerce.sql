@@ -40,3 +40,21 @@ LIMIT 10;
 # Explanation:
 # Shows most active buyers.
 # Helps identify loyal customers or VIPs
+
+
+
+# 5. Users with frequent product views but no purchase (cart abandonment)
+
+SELECT pv.user_id, COUNT(*) AS views_no_purchase
+FROM product_views pv
+LEFT JOIN order_items oi 
+  ON pv.product_id = oi.product_id AND pv.user_id = oi.user_id
+WHERE oi.product_id IS NULL
+GROUP BY pv.user_id
+ORDER BY views_no_purchase DESC
+LIMIT 10;
+
+
+# Explanation:
+# Measures users who frequently browse but never buy.
+# Useful for cart abandonment campaigns.
