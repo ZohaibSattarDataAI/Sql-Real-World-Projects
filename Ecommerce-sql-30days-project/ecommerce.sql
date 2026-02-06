@@ -66,3 +66,7 @@ SELECT user_id, COUNT(*)/30.0 AS avg_views_per_day
 FROM product_views
 GROUP BY user_id;
 
+# Explanation:
+# Calculates daily average of product views.
+# Helps understand user engagement.
+
