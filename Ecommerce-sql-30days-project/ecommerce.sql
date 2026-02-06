@@ -58,3 +58,11 @@ LIMIT 10;
 # Explanation:
 # Measures users who frequently browse but never buy.
 # Useful for cart abandonment campaigns.
+
+
+# 6. Average number of products viewed per user per day
+
+SELECT user_id, COUNT(*)/30.0 AS avg_views_per_day
+FROM product_views
+GROUP BY user_id;
+
