@@ -70,3 +70,15 @@ GROUP BY user_id;
 # Calculates daily average of product views.
 # Helps understand user engagement.
 
+# 7. Users who viewed more than 10 products in last 7 days
+
+SELECT user_id, COUNT(*) AS views_count
+FROM product_views
+WHERE view_date >= date('now','-7 days')
+GROUP BY user_id
+HAVING COUNT(*) > 10;
+
+# Explanation:
+# Finds highly active users.
+# Can target them for promotions.
+
