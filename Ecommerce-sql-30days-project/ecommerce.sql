@@ -94,3 +94,16 @@ HAVING COUNT(order_id) > 1;
 # Explanation:
 # Identifies repeat buyers.
 # Useful for loyalty program tracking.
+
+
+# 9. Users who abandoned carts (viewed but no order same day)
+
+SELECT DISTINCT pv.user_id
+FROM product_views pv
+LEFT JOIN orders o 
+  ON pv.user_id = o.user_id AND pv.view_date = o.order_date
+WHERE o.order_id IS NULL;
+
+# Explanation:
+# Detects users who browsed products but never purchased.
+# Important for remarketing campaigns.
