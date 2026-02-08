@@ -82,3 +82,15 @@ HAVING COUNT(*) > 10;
 # Finds highly active users.
 # Can target them for promotions.
 
+
+# 8. Users who placed more than 1 order in last 30 days
+
+SELECT user_id, COUNT(order_id) AS order_count
+FROM orders
+WHERE order_date >= date('now','-30 days')
+GROUP BY user_id
+HAVING COUNT(order_id) > 1;
+
+# Explanation:
+# Identifies repeat buyers.
+# Useful for loyalty program tracking.
