@@ -107,3 +107,16 @@ WHERE o.order_id IS NULL;
 # Explanation:
 # Detects users who browsed products but never purchased.
 # Important for remarketing campaigns.
+
+
+# 10. Top 5 users by product views
+
+SELECT user_id, COUNT(*) AS views_count
+FROM product_views
+GROUP BY user_id
+ORDER BY views_count DESC
+LIMIT 5;
+
+# Explanation:
+# Shows most engaged users in terms of browsing.
+# Can analyze behavior patterns for targeted marketing.
