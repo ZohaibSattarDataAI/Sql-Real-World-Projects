@@ -120,3 +120,16 @@ LIMIT 5;
 # Explanation:
 # Shows most engaged users in terms of browsing.
 # Can analyze behavior patterns for targeted marketing.
+
+
+# 2️⃣ Product Analytics Queries (Days 11–15)
+
+SELECT product_id, COUNT(*) AS views_count
+FROM product_views
+GROUP BY product_id
+ORDER BY views_count DESC
+LIMIT 10;
+
+# Explanation:
+# Finds products users are most interested in.
+# Useful for trending product insights.
