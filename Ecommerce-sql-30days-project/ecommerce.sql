@@ -133,3 +133,16 @@ LIMIT 10;
 # Explanation:
 # Finds products users are most interested in.
 # Useful for trending product insights.
+
+
+# 13. Products purchased multiple times
+
+SELECT product_id, COUNT(*) AS times_sold
+FROM order_items
+GROUP BY product_id
+ORDER BY times_sold DESC
+LIMIT 10;
+
+# Explanation:
+# Lists top-selling products.
+# Shows popular products for inventory planning.
