@@ -146,3 +146,13 @@ LIMIT 10;
 # Explanation:
 # Lists top-selling products.
 # Shows popular products for inventory planning.
+
+# 14. Low stock products (<20)
+
+SELECT *
+FROM products
+WHERE stock_quantity < 20;
+
+# Explanation:
+# Detects inventory shortage.
+# Helps prevent out-of-stock issues
