@@ -158,3 +158,11 @@ WHERE stock_quantity < 20;
 # Helps prevent out-of-stock issues
 
 # 15. Products never sold
+
+SELECT *
+FROM products
+WHERE product_id NOT IN (SELECT DISTINCT product_id FROM order_items);
+
+# Explanation:
+# Finds products with zero sales.
+# Useful for promotions or discontinuation decisions.
