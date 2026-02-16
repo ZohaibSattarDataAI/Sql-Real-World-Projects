@@ -175,4 +175,6 @@ JOIN products p ON oi.product_id = p.product_id
 GROUP BY p.category
 ORDER BY sold_count DESC;
 
-
+# Explanation:
+# Shows top product categories.
+# Supports category-level promotions and stock planning.
