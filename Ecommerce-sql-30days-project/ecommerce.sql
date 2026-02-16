@@ -166,3 +166,13 @@ WHERE product_id NOT IN (SELECT DISTINCT product_id FROM order_items);
 # Explanation:
 # Finds products with zero sales.
 # Useful for promotions or discontinuation decisions.
+
+# 16. Most popular categories by total sales
+
+SELECT p.category, COUNT(oi.product_id) AS sold_count
+FROM order_items oi
+JOIN products p ON oi.product_id = p.product_id
+GROUP BY p.category
+ORDER BY sold_count DESC;
+
+
