@@ -156,3 +156,5 @@ WHERE stock_quantity < 20;
 # Explanation:
 # Detects inventory shortage.
 # Helps prevent out-of-stock issues
+
+# 15. Products never sold
