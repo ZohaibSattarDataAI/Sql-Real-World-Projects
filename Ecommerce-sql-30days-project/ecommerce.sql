@@ -185,3 +185,6 @@ SELECT product_id, AVG(quantity) AS avg_quantity
 FROM order_items
 GROUP BY product_id;
 
+# Explanation:
+# Determines typical purchase quantity per product.
+# Useful for packaging or pricing strategy.
