@@ -178,3 +178,6 @@ ORDER BY sold_count DESC;
 # Explanation:
 # Shows top product categories.
 # Supports category-level promotions and stock planning.
+
+# 17. Average quantity sold per product
+
