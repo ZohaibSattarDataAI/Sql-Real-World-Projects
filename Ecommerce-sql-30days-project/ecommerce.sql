@@ -181,3 +181,7 @@ ORDER BY sold_count DESC;
 
 # 17. Average quantity sold per product
 
+SELECT product_id, AVG(quantity) AS avg_quantity
+FROM order_items
+GROUP BY product_id;
+
