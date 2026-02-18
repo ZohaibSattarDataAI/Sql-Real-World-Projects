@@ -188,3 +188,5 @@ GROUP BY product_id;
 # Explanation:
 # Determines typical purchase quantity per product.
 # Useful for packaging or pricing strategy.
+
+#18. Products viewed but not purchased
