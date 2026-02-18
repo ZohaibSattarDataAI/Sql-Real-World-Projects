@@ -189,4 +189,12 @@ GROUP BY product_id;
 # Determines typical purchase quantity per product.
 # Useful for packaging or pricing strategy.
 
-#18. Products viewed but not purchased
+# 18. Products viewed but not purchased
+
+SELECT DISTINCT pv.product_id
+FROM product_views pv
+LEFT JOIN order_items oi 
+  ON pv.product_id = oi.product_id AND pv.user_id = oi.user_id
+WHERE oi.product_id IS NULL;
+
+
