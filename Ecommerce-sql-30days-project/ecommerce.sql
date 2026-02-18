@@ -197,4 +197,5 @@ LEFT JOIN order_items oi
   ON pv.product_id = oi.product_id AND pv.user_id = oi.user_id
 WHERE oi.product_id IS NULL;
 
-
+# Explanation:
+# Highlights products with interest but low conversion.
