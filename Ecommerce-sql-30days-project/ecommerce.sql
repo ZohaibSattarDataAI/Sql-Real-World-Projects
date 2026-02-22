@@ -201,3 +201,10 @@ WHERE oi.product_id IS NULL;
 # Highlights products with interest but low conversion.
 
 # 19. Top 5 products by revenue
+
+SELECT p.product_id, p.product_name, SUM(oi.quantity*oi.price) AS revenue
+FROM order_items oi
+JOIN products p ON oi.product_id = p.product_id
+GROUP BY p.product_id, p.product_name
+ORDER BY revenue DESC
+LIMIT 5;
