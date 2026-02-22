@@ -212,3 +212,42 @@ LIMIT 5;
 # Explanation:
 # Measures products generating the most revenue.
 # Key for inventory and pricing decisions.
+
+# 20. Products with highest cart abandonment (views > purchases)
+
+SELECT pv.product_id, COUNT(pv.view_id) - COALESCE(COUNT(oi.order_item_id),0) AS abandonment_count
+FROM product_views pv
+LEFT JOIN order_items oi 
+  ON pv.product_id = oi.product_id AND pv.user_id = oi.user_id
+GROUP BY pv.product_id
+ORDER BY abandonment_count DESC
+LIMIT 10;
+
+# Explanation:
+# Shows which products are often browsed but rarely bought.
+# Important for marketing, UX improvements.
+
+# Query 21 — Total Revenue in 30 Days
+  
+SELECT SUM(total_amount) AS total_revenue
+FROM sales_dataset_30days;
+
+# Explanation:
+# SUM(total_amount) → total revenue calculate karta hai
+# Pure 30 din ka business revenue
+# Business Use:
+# Company ka total sales performance check karna.
+
+# Query 22 — Daily Revenue
+
+SELECT sale_date,
+       SUM(total_amount) AS daily_revenue
+FROM sales_dataset_30days
+GROUP BY sale_date
+ORDER BY sale_date;
+
+# Explanation:
+# Har date ka total revenue
+# GROUP BY sale_date → date-wise aggregation
+# Business Use:
+# Daily performance tracking.
