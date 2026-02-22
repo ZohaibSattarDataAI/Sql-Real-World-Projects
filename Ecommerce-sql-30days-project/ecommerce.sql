@@ -199,3 +199,5 @@ WHERE oi.product_id IS NULL;
 
 # Explanation:
 # Highlights products with interest but low conversion.
+
+# 19. Top 5 products by revenue
