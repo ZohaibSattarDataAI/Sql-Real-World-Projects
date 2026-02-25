@@ -249,5 +249,50 @@ ORDER BY sale_date;
 # Explanation:
 # Har date ka total revenue
 # GROUP BY sale_date → date-wise aggregation
+
+# Business Use:
+# Daily performance tracking.
+
+# Query 23 — Top 5 Revenue Generating Products
+  
+SELECT product_name,
+       SUM(total_amount) AS revenue
+FROM sales_dataset_30days
+GROUP BY product_name
+ORDER BY revenue DESC
+LIMIT 5;
+
+# Explanation:
+# Product-wise revenue calculate
+# Highest earning products identify
+# Business Use:
+# Inventory & marketing decisions.
+
+# Query 24 — Average Order Value (AOV)
+  
+SELECT AVG(total_amount) AS avg_order_value
+FROM sales_dataset_30days;
+
+# Explanation:
+# Har sale ka average amount
+# AOV ecommerce KPI hota hai
+# Business Use:
+# Pricing strategy optimize karne ke liye.
+
+# Query 25 — Revenue by Category
+  
+SELECT category,
+       SUM(total_amount) AS category_revenue
+FROM sales_dataset_30days
+GROUP BY category
+ORDER BY category_revenue DESC;
+
+# Explanation:
+# Category-wise revenue
+# Business Use:
+# Product expansion decisions.
+# Explanation:
+# Har date ka total revenue
+# GROUP BY sale_date → date-wise aggregation
 # Business Use:
 # Daily performance tracking.
