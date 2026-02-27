@@ -296,3 +296,47 @@ ORDER BY category_revenue DESC;
 # GROUP BY sale_date → date-wise aggregation
 # Business Use:
 # Daily performance tracking.
+
+
+# Query 26 — Running Total Revenue (Window Function)
+SELECT sale_date,
+       SUM(total_amount) AS daily_revenue,
+       SUM(SUM(total_amount)) OVER (ORDER BY sale_date) AS running_total
+FROM sales_dataset_30days
+GROUP BY sale_date
+ORDER BY sale_date;
+
+# Explanation:
+# Daily revenue calculate
+# OVER (ORDER BY sale_date) → cumulative total
+# Business Use:
+# Growth trend monitoring.
+
+# Query 27 — Rank Products by Revenue
+  
+SELECT product_name,
+       SUM(total_amount) AS revenue,
+       RANK() OVER (ORDER BY SUM(total_amount) DESC) AS revenue_rank
+FROM sales_dataset_30days
+GROUP BY product_name;
+
+# Explanation:
+# Revenue calculate
+# RANK() → product ranking
+# Business Use:
+# Top performers highlight karna.
+
+# Query 28 — Customer Lifetime Value (CLV)
+  
+SELECT customer_id,
+       customer_name,
+       SUM(total_amount) AS customer_lifetime_value
+FROM sales_dataset_30days
+GROUP BY customer_id, customer_name
+ORDER BY customer_lifetime_value DESC;
+
+# Explanation:
+# Har customer ka total spend
+# High-value customers identify
+# Business Use:
+# VIP targeting.
