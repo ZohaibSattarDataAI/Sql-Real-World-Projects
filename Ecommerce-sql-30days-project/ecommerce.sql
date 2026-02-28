@@ -340,3 +340,38 @@ ORDER BY customer_lifetime_value DESC;
 # High-value customers identify
 # Business Use:
 # VIP targeting.
+
+
+# Query 29 — Customers With More Than 3 Purchases
+SELECT customer_id,
+       customer_name,
+       COUNT(sale_id) AS total_orders
+FROM sales_dataset_30days
+GROUP BY customer_id, customer_name
+HAVING COUNT(sale_id) > 3;
+
+# Explanation:
+# HAVING aggregation filter karta hai
+# Repeat customers identify karta hai
+
+# Business Use:
+# Loyalty program targeting.
+
+# Query 30 — 3-Day Moving Average Revenue
+  
+SELECT sale_date,
+       SUM(total_amount) AS daily_revenue,
+       AVG(SUM(total_amount)) OVER (
+           ORDER BY sale_date
+           ROWS BETWEEN 2 PRECEDING AND CURRENT ROW
+       ) AS moving_avg_3_days
+FROM sales_dataset_30days
+GROUP BY sale_date
+ORDER BY sale_date;
+
+# Explanation:
+# Last 3 days ka average revenue
+#Trend smoothing ke liye use hota hai
+
+# Business Use:
+# Short-term sales trend analysis.
