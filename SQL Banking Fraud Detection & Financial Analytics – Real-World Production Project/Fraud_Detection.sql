@@ -1,1 +1,102 @@
+Transaction_ID
+Customer_ID
+Transaction_Date
+Transaction_Type
+Amount
+Merchant_Category
+City
+Payment_Method
+Is_Fraud
+
+
+
+
+# ✅ DAY 1 – Basic Queries
+  
+# 1️⃣ Total Number of Transactions
+  
+SELECT COUNT(*) AS total_transactions
+FROM banking_transactions;
+
+# 2️⃣ Total Revenue
+  
+SELECT SUM(Amount) AS total_revenue
+FROM banking_transactions;
+
+# 3️⃣ Average Transaction Amount
+  
+SELECT AVG(Amount) AS avg_transaction
+FROM banking_transactions;
+
+# 4️⃣ Maximum Transaction
+  
+SELECT MAX(Amount) AS highest_transaction
+FROM banking_transactions;
+
+# 5️⃣ Minimum Transaction
+  
+SELECT MIN(Amount) AS lowest_transaction
+FROM banking_transactions;
+
+# ✅ DAY 2 – Group By
+  
+# 6️⃣ Transactions by City
+  
+SELECT City, COUNT(*) AS total_transactions
+FROM banking_transactions
+GROUP BY City;
+
+# 7️⃣ Revenue by Merchant Category
+  
+SELECT Merchant_Category, SUM(Amount) AS total_revenue
+FROM banking_transactions
+GROUP BY Merchant_Category
+ORDER BY total_revenue DESC;
+
+# 8️⃣ Transactions by Payment Method
+  
+SELECT Payment_Method, COUNT(*) AS total
+FROM banking_transactions
+GROUP BY Payment_Method;
+
+# ✅ DAY 3 – Fraud Analysis
+  
+# 9️⃣ Total Fraud Cases
+SELECT COUNT(*) AS total_fraud
+FROM banking_transactions
+WHERE Is_Fraud = 1;
+
+# 🔟 Fraud Percentage
+SELECT 
+    (COUNT(CASE WHEN Is_Fraud = 1 THEN 1 END) * 100.0 / COUNT(*)) AS fraud_percentage
+FROM banking_transactions;
+
+# 1️⃣1️⃣ Fraud by Payment Method
+  
+SELECT Payment_Method,
+       COUNT(*) AS fraud_cases
+FROM banking_transactions
+WHERE Is_Fraud = 1
+GROUP BY Payment_Method
+ORDER BY fraud_cases DESC;
+
+# ✅ DAY 4 – Date Analysis
+  
+# 1️⃣2️⃣ Monthly Revenue
+  
+SELECT 
+    MONTH(Transaction_Date) AS month,
+    SUM(Amount) AS revenue
+FROM banking_transactions
+GROUP BY MONTH(Transaction_Date)
+ORDER BY month;
+
+# 1️⃣3️⃣ Daily Transactions Count
+  
+SELECT 
+    Transaction_Date,
+    COUNT(*) AS daily_transactions
+FROM banking_transactions
+GROUP BY Transaction_Date
+ORDER BY Transaction_Date;
 
