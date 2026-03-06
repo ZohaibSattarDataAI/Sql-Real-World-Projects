@@ -133,3 +133,18 @@ SELECT *
 FROM banking_transactions
 WHERE Amount > 1000
 AND Is_Fraud = 1;
+
+
+# ✅ DAY 7 – Case Statements
+  
+# 1️⃣8️⃣ Customer Segmentation
+  
+SELECT Customer_ID,
+       SUM(Amount) AS total_spent,
+       CASE
+           WHEN SUM(Amount) < 1000 THEN 'Low'
+           WHEN SUM(Amount) BETWEEN 1000 AND 5000 THEN 'Medium'
+           ELSE 'High'
+       END AS customer_segment
+FROM banking_transactions
+GROUP BY Customer_ID;
