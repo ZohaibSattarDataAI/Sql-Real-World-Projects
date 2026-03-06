@@ -100,3 +100,36 @@ FROM banking_transactions
 GROUP BY Transaction_Date
 ORDER BY Transaction_Date;
 
+# ✅ DAY 5 – Customer Insights
+  
+$ 1️⃣4️⃣ Top 10 High Value Customers
+  
+SELECT Customer_ID,
+       SUM(Amount) AS total_spent
+FROM banking_transactions
+GROUP BY Customer_ID
+ORDER BY total_spent DESC
+LIMIT 10;
+
+# 1️⃣5️⃣ Customers With More Than 10 Transactions
+  
+SELECT Customer_ID,
+       COUNT(*) AS total_transactions
+FROM banking_transactions
+GROUP BY Customer_ID
+HAVING COUNT(*) > 10;
+
+# ✅ DAY 6 – Advanced Filtering
+  
+# 1️⃣6️⃣ High Value Transactions (>1000)
+  
+SELECT *
+FROM banking_transactions
+WHERE Amount > 1000;
+
+# 1️⃣7️⃣ High Value & Fraud Transactions
+  
+SELECT *
+FROM banking_transactions
+WHERE Amount > 1000
+AND Is_Fraud = 1;
