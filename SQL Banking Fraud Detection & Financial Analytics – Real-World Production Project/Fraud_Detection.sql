@@ -148,3 +148,14 @@ SELECT Customer_ID,
        END AS customer_segment
 FROM banking_transactions
 GROUP BY Customer_ID;
+
+
+# ✅ DAY 8 – Window Functions (Data Scientist Level)
+  
+# 1️⃣9️⃣ Rank Customers by Spending
+  
+SELECT Customer_ID,
+       SUM(Amount) AS total_spent,
+       RANK() OVER (ORDER BY SUM(Amount) DESC) AS spending_rank
+FROM banking_transactions
+GROUP BY Customer_ID;
