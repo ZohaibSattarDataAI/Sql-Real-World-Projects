@@ -159,3 +159,39 @@ SELECT Customer_ID,
        RANK() OVER (ORDER BY SUM(Amount) DESC) AS spending_rank
 FROM banking_transactions
 GROUP BY Customer_ID;
+
+
+# ✅ DAY 9 – Fraud Risk Patterns
+  
+# 2️⃣1️⃣ Fraud by City
+  
+SELECT City,
+       COUNT(*) AS fraud_cases
+FROM banking_transactions
+WHERE Is_Fraud = 1
+GROUP BY City
+ORDER BY fraud_cases DESC;
+
+# 2️⃣2️⃣ Fraud Rate by Merchant Category
+  
+SELECT Merchant_Category,
+       COUNT(CASE WHEN Is_Fraud = 1 THEN 1 END) * 100.0 / COUNT(*) AS fraud_rate
+FROM banking_transactions
+GROUP BY Merchant_Category
+ORDER BY fraud_rate DESC;
+
+# DAY 10 – Advanced Analytics
+  
+# 2️⃣3️⃣ Average Fraud Amount
+  
+SELECT AVG(Amount) AS avg_fraud_amount
+FROM banking_transactions
+WHERE Is_Fraud = 1;
+
+# 2️⃣4️⃣ Non-Fraud vs Fraud Comparison
+  
+SELECT Is_Fraud,
+       COUNT(*) AS total_transactions,
+       AVG(Amount) AS avg_amount
+FROM banking_transactions
+GROUP BY Is_Fraud;
