@@ -195,3 +195,14 @@ SELECT Is_Fraud,
        AVG(Amount) AS avg_amount
 FROM banking_transactions
 GROUP BY Is_Fraud;
+
+# DAY 11 – Anomaly Detection Logic
+  
+# 2️⃣5️⃣ Transactions Above 95th Percentile
+  
+SELECT *
+FROM banking_transactions
+WHERE Amount > (
+    SELECT PERCENTILE_CONT(0.95) 
+    WITHIN GROUP (ORDER BY Amount)
+    FROM banking_
