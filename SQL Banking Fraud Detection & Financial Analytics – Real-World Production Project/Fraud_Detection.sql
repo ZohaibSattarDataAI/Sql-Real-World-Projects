@@ -205,4 +205,29 @@ FROM banking_transactions
 WHERE Amount > (
     SELECT PERCENTILE_CONT(0.95) 
     WITHIN GROUP (ORDER BY Amount)
-    FROM banking_
+    FROM banking
+
+# DAY 12 – Time Based Fraud Detection
+  
+# 2️⃣6️⃣ Fraud Transactions Per Month
+  
+SELECT 
+    MONTH(Transaction_Date) AS month,
+    COUNT(*) AS fraud_cases
+FROM banking_transactions
+WHERE Is_Fraud = 1
+GROUP BY MONTH(Transaction_Date)
+ORDER BY month;
+
+# DAY 13 – Payment Risk Analysis
+  
+# 2️⃣7️⃣ Fraud Rate by Payment Method
+SELECT Payment_Method,
+  
+       COUNT(CASE WHEN Is_Fraud = 1 THEN 1 END) * 100.0 / COUNT(*) AS fraud_rate
+FROM banking_transactions
+GROUP BY Payment_Method
+ORDER BY fraud_rate DESC;
+
+
+  
