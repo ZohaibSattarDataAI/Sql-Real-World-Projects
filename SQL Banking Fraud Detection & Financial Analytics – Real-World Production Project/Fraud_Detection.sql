@@ -229,5 +229,13 @@ FROM banking_transactions
 GROUP BY Payment_Method
 ORDER BY fraud_rate DESC;
 
-
+# DAY 14 – High Risk Customers
   
+# 2️⃣8️⃣ Customers With More Than 2 Fraud Transactions
+  
+SELECT Customer_ID,
+       COUNT(*) AS fraud_count
+FROM banking_transactions
+WHERE Is_Fraud = 1
+GROUP BY Customer_ID
+HAVING COUNT(*) > 2;
