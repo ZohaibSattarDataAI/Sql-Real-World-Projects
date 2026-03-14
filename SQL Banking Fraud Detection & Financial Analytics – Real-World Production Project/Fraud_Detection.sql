@@ -239,3 +239,14 @@ FROM banking_transactions
 WHERE Is_Fraud = 1
 GROUP BY Customer_ID
 HAVING COUNT(*) > 2;
+
+# DAY 15 – Advanced Window & Partition
+  
+# 2️⃣9️⃣ Customer Wise Running Spending
+  
+SELECT Customer_ID,
+       Transaction_Date,
+       Amount,
+       SUM(Amount) OVER (PARTITION BY Customer_ID 
+                         ORDER BY Transaction_Date) AS running_spending
+FROM banking_transactions;
