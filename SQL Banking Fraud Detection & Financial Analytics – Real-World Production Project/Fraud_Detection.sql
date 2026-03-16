@@ -250,3 +250,14 @@ SELECT Customer_ID,
        SUM(Amount) OVER (PARTITION BY Customer_ID 
                          ORDER BY Transaction_Date) AS running_spending
 FROM banking_transactions;
+
+# DAY 16 – ML Preparation
+  
+# 3️⃣0️⃣ Create Feature Table for ML
+SELECT Customer_ID,
+       COUNT(*) AS total_transactions,
+       SUM(Amount) AS total_spent,
+       AVG(Amount) AS avg_amount,
+       SUM(CASE WHEN Is_Fraud = 1 THEN 1 ELSE 0 END) AS fraud_count
+FROM banking_transactions
+GROUP BY Customer_ID;
