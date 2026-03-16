@@ -261,3 +261,16 @@ SELECT Customer_ID,
        SUM(CASE WHEN Is_Fraud = 1 THEN 1 ELSE 0 END) AS fraud_count
 FROM banking_transactions
 GROUP BY Customer_ID;
+
+
+# DAY 17 → DAY 31 (Advanced Data Scientist Level SQL)
+
+# Table: banking_transactions
+
+# DAY 17 – City Revenue Ranking
+️#  Rank Cities by Total Revenue
+SELECT City,
+       SUM(Amount) AS total_revenue,
+       RANK() OVER (ORDER BY SUM(Amount) DESC) AS city_rank
+FROM banking_transactions
+GROUP BY City;
