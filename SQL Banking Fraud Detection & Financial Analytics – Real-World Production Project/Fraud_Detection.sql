@@ -274,3 +274,18 @@ SELECT City,
        RANK() OVER (ORDER BY SUM(Amount) DESC) AS city_rank
 FROM banking_transactions
 GROUP BY City;
+
+# DAY 18 – Top Merchant per City
+  
+# 1️⃣8️⃣ Highest Revenue Merchant Category in Each City
+  
+SELECT City, Merchant_Category, total_revenue
+FROM (
+    SELECT City,
+           Merchant_Category,
+           SUM(Amount) AS total_revenue,
+           RANK() OVER (PARTITION BY City ORDER BY SUM(Amount) DESC) AS rnk
+    FROM banking_transactions
+    GROUP BY City, Merchant_Category
+) t
+WHERE rnk = 1;
