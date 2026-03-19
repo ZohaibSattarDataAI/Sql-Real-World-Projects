@@ -289,3 +289,16 @@ FROM (
     GROUP BY City, Merchant_Category
 ) t
 WHERE rnk = 1;
+
+
+# DAY 19 – Daily Fraud Trend
+  
+# 1️⃣9️⃣ Daily Fraud Count
+
+  
+SELECT Transaction_Date,
+       COUNT(*) AS fraud_count
+FROM banking_transactions
+WHERE Is_Fraud = 1
+GROUP BY Transaction_Date
+ORDER BY Transaction_Date;
