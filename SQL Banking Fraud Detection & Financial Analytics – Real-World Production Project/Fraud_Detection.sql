@@ -302,3 +302,25 @@ FROM banking_transactions
 WHERE Is_Fraud = 1
 GROUP BY Transaction_Date
 ORDER BY Transaction_Date;
+
+
+## ✅ DAY 20 – Fraud Amount Contribution
+  
+## 2️⃣0️⃣ Percentage of Revenue Lost to Fraud
+  
+SELECT 
+    SUM(CASE WHEN Is_Fraud = 1 THEN Amount ELSE 0 END) * 100.0 /
+    SUM(Amount) AS fraud_revenue_percentage
+FROM banking_transactions;
+
+## ✅ DAY 21 – Customer Risk Score
+  
+## 2️⃣1️⃣ Create Simple Risk Score
+  
+SELECT Customer_ID,
+       COUNT(*) AS total_txn,
+       SUM(CASE WHEN Is_Fraud = 1 THEN 1 ELSE 0 END) AS fraud_txn,
+       SUM(CASE WHEN Is_Fraud = 1 THEN 1 ELSE 0 END) * 1.0 / COUNT(*) AS risk_score
+FROM banking_transactions
+GROUP BY Customer_ID
+ORDER BY risk_score DESC;
