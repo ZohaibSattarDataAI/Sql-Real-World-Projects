@@ -324,3 +324,20 @@ SELECT Customer_ID,
 FROM banking_transactions
 GROUP BY Customer_ID
 ORDER BY risk_score DESC;
+
+##  DAY 22 – High Spending Pattern Detection
+  
+## 2️⃣2️⃣ Customers Spending Above Average
+  
+SELECT Customer_ID,
+       SUM(Amount) AS total_spent
+FROM banking_transactions
+GROUP BY Customer_ID
+HAVING SUM(Amount) > (
+    SELECT AVG(customer_total)
+    FROM (
+        SELECT SUM(Amount) AS customer_total
+        FROM banking_transactions
+        GROUP BY Customer_ID
+    ) t
+);
