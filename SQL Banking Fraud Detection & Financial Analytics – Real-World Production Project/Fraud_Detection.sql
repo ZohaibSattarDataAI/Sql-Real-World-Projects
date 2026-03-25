@@ -339,5 +339,40 @@ HAVING SUM(Amount) > (
         SELECT SUM(Amount) AS customer_total
         FROM banking_transactions
         GROUP BY Customer_ID
-    ) t
+    )t
 );
+
+# DAY 23 – Suspicious Rapid Transactions (Same Day)
+  
+# 2️⃣3️⃣ Customers With 5+ Transactions in One Day
+  
+SELECT Customer_ID,
+       Transaction_Date,
+       COUNT(*) AS txn_count
+FROM banking_transactions
+GROUP BY Customer_ID, Transaction_Date
+HAVING COUNT(*) >= 5;
+
+# DAY 24 – Payment Method Fraud Comparison
+  
+# 2️⃣4️⃣ Fraud vs Non-Fraud by Payment Method
+  
+SELECT Payment_Method,
+       SUM(CASE WHEN Is_Fraud = 1 THEN 1 ELSE 0 END) AS fraud_cases,
+       SUM(CASE WHEN Is_Fraud = 0 THEN 1 ELSE 0 END) AS non_fraud_cases
+FROM banking_transactions
+GROUP BY Payment_Method;
+
+# DAY 25 – Moving Average (Trend Analysis)
+  
+#2️⃣5️⃣ 7-Day Moving Average Revenue
+  
+SELECT Transaction_Date,
+       AVG(SUM(Amount)) OVER (
+           ORDER BY Transaction_Date
+           ROWS BETWEEN 6 PRECEDING AND CURRENT ROW
+       ) AS moving_avg_7days
+FROM banking_transactions
+GROUP BY Transaction_Date
+ORDER BY Transaction_Date;
+
