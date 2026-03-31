@@ -376,3 +376,70 @@ FROM banking_transactions
 GROUP BY Transaction_Date
 ORDER BY Transaction_Date;
 
+
+✅ DAY 26 – Detect Outlier Transactions
+2️⃣6️⃣ Transactions Greater Than 2x Average
+SELECT *
+FROM banking_transactions
+WHERE Amount > (
+    SELECT AVG(Amount) * 2
+    FROM banking_transactions
+);
+✅ DAY 27 – Fraud Probability by Amount Range
+2️⃣7️⃣ Fraud Rate by Amount Bucket
+SELECT 
+    CASE 
+        WHEN Amount < 100 THEN 'Low'
+        WHEN Amount BETWEEN 100 AND 500 THEN 'Medium'
+        WHEN Amount BETWEEN 500 AND 1000 THEN 'High'
+        ELSE 'Very High'
+    END AS amount_bucket,
+    COUNT(CASE WHEN Is_Fraud = 1 THEN 1 END) * 100.0 / COUNT(*) AS fraud_rate
+FROM banking_transactions
+GROUP BY amount_bucket
+ORDER BY fraud_rate DESC;
+✅ DAY 28 – Customer Lifetime Value
+2️⃣8️⃣ Customer Lifetime Value (CLV)
+SELECT Customer_ID,
+       MIN(Transaction_Date) AS first_transaction,
+       MAX(Transaction_Date) AS last_transaction,
+       SUM(Amount) AS lifetime_value
+FROM banking_transactions
+GROUP BY Customer_ID
+ORDER BY lifetime_value DESC;
+✅ DAY 29 – Revenue Contribution %
+2️⃣9️⃣ Top 20% Customers Revenue Contribution
+WITH ranked_customers AS (
+    SELECT Customer_ID,
+           SUM(Amount) AS total_spent,
+           NTILE(5) OVER (ORDER BY SUM(Amount) DESC) AS bucket
+    FROM banking_transactions
+    GROUP BY Customer_ID
+)
+SELECT 
+    SUM(total_spent) * 100.0 /
+    (SELECT SUM(Amount) FROM banking_transactions) AS top_20_percent_revenue
+FROM ranked_customers
+WHERE bucket = 1;
+✅ DAY 30 – Fraud Detection Feature Engineering
+3️⃣0️⃣ Feature Table for ML Model
+SELECT Customer_ID,
+       COUNT(*) AS total_transactions,
+       SUM(Amount) AS total_spent,
+       AVG(Amount) AS avg_spent,
+       MAX(Amount) AS max_transaction,
+       SUM(CASE WHEN Is_Fraud = 1 THEN 1 ELSE 0 END) AS fraud_count,
+       SUM(CASE WHEN Is_Fraud = 1 THEN 1 ELSE 0 END) * 1.0 / COUNT(*) AS fraud_ratio
+FROM banking_transactions
+GROUP BY Customer_ID;
+✅ DAY 31 – Executive Fraud & Revenue Dashboard
+3️⃣1️⃣ Complete Business KPI Query
+SELECT 
+    COUNT(*) AS total_transactions,
+    SUM(Amount) AS total_revenue,
+    AVG(Amount) AS avg_transaction,
+    MAX(Amount) AS highest_transaction,
+    COUNT(DISTINCT Customer_ID) AS total_customers,
+    SUM(CASE WHEN Is_Fraud = 1 THEN 1 ELSE 0 END) AS total_fraud_cases,
+    SUM(CASE WHEN Is_Fraud = 1 THEN 1 ELSE 0 END) * 100.0 / COUNT(*) AS fraud_rate_percentage
+FROM banking_transactions;
