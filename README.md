@@ -199,6 +199,6 @@ SQL real-world projects, advanced SQL, SQL for data engineering, SQL for data sc
 
 ---
 
-## ⭐ Support the Project
+## ⭐ Support  & share the Project
 If this repository helps you grow as a **SQL professional**, please ⭐ **star the repo** and share it.  
 Your support encourages more high-quality open-source work!
